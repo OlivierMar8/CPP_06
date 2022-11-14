@@ -1,38 +1,20 @@
-//main.cpp	CPP05	ex00
+//main.cpp	CPP06	ex00
 
 #include <iostream>
-#include "Bureaucrat.hpp"
+#include "ScalConverter.hpp"
 
-
-int	main( void )
+int	main( int argc, char ** argv )
 {
-	
-	Bureaucrat bur("Bob", 149);
+	if (argc != 2 )
+		std::cout << "Uncorrect number of argument !" << std::endl;
+	else
+	{
+/*		ScalConverter value(argv[1]);
 
-	std::cout << bur << std::endl;
-	bur.increGrade();
-	std::cout << bur << std::endl;
-	bur.decreGrade();
-	std::cout << bur << std::endl;
-	bur.decreGrade();
-	std::cout << bur.getGrade() << std::endl;
-	std::cout << bur << std::endl;
-	bur.decreGrade();
-	std::cout << bur.getGrade() << std::endl;
-	bur.decreGrade();
+*/		std::cout << value << std::endl;
+		std::cout << 2 * stoi(argv[1]) << std::endl;
 
-	Bureaucrat bur1("Tom", 0);
-	Bureaucrat bur2("Robert", 1510);
-	Bureaucrat bur3("Bruce", 1);
-	std::cout << bur3.getName() << " / " << bur3.getGrade() << std::endl;
-	bur3.increGrade();
-	std::cout << bur3 << std::endl;
-
-	Bureaucrat bur4(bur3);
-	std::cout << bur4 << std::endl;
-	bur4 = bur;
-	std::cout << bur4 << std::endl;
-
+	}	
 	return 0;
 }
 

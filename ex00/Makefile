@@ -1,16 +1,16 @@
-#Makefile   CPP05   ex00
+#Makefile   CPP06   ex00
 
-SRCS		= main.cpp Bureaucrat.cpp
+SRCS		= main.cpp ScalConverter.cpp
 
 OBJS		= $(SRCS:.cpp=.o)
 
-NAME		= bureaucrat 
+NAME		= conv_scal 
 
-CC			= c++ #c++-12
+CC			= c++-12 #c++-12
 
 RM			= rm -f
 
-CFLAGS		= -Wall -Werror -Wextra -std=c++98
+CFLAGS		= -Wall -Werror -Wextra -std=c++98 -g
 
 
 all:		${NAME}
