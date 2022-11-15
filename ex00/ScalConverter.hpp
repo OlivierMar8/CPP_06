@@ -34,7 +34,8 @@ class ScalConverter {
 			TypeChar,
 			TypeInt,
 			TypeFloat,
-			TypeDouble
+			TypeDouble,
+			TypeEmpty
 		};
 
 		ScalConverter( void );					//Canonique
