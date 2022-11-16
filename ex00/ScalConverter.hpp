@@ -6,7 +6,7 @@
 #include <ostream>
 #include <string>
 #include <limits>
-#include <cstdlib>
+#include <sstream>
 
 
 class ScalConverter {
@@ -44,7 +44,7 @@ class ScalConverter {
 //		long		_intValue;
 		double		_doubleValue;
 		float		_floatValue;
-		int			p_val[4];
+		int			_p_val[4];
 		enum _Type_val {
 			TypeChar,
 			TypeInt,

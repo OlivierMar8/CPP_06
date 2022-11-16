@@ -4,7 +4,7 @@ SRCS		= main.cpp ScalConverter.cpp
 
 OBJS		= $(SRCS:.cpp=.o)
 
-NAME		= conv_scal 
+NAME		= scalconverter 
 
 CC			= c++-12 #c++-12
 
