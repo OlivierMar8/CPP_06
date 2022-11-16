@@ -9,10 +9,9 @@ int	main( int argc, char ** argv )
 		std::cout << "Uncorrect number of argument !" << std::endl;
 	else
 	{
-/*		ScalConverter value(argv[1]);
-
-*/		std::cout << value << std::endl;
-		std::cout << 2 * stoi(argv[1]) << std::endl;
+		ScalConverter value(argv[1]);
+		value.show_cast();
+		std::cout << value << std::endl;
 
 	}	
 	return 0;

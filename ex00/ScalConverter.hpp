@@ -6,6 +6,7 @@
 #include <ostream>
 #include <string>
 #include <limits>
+#include <cstdlib>
 
 
 class ScalConverter {
@@ -20,22 +21,37 @@ class ScalConverter {
 
 		std::string		getOStr( void ) const;
 
+		int				getSpecialCases( int flag );
+		int				testDigits( int flag );
+		size_t			first_non_digit( size_t i);
 		void			printResult( void );
-
+		void			convert_char( void );
+		void			convert_int( void );
+		void			convert_double( void );
+		void			convert_float( void );
+		void			show_cast( void );	
+		void			display_char( void );
+		void			display_int( void );
+		void			display_float( void );
+		void			display_double( void );
 
 	private:
 
-		std::string	_Type;
-		std::string	_o_str;
+		int			_Type;
+		std::string	_str;
+		char		_charValue;
 		int			_intValue;
-		double		_dbleValue;
-		float		_fValue;
-		enum Type {
+//		long		_intValue;
+		double		_doubleValue;
+		float		_floatValue;
+		int			p_val[4];
+		enum _Type_val {
 			TypeChar,
 			TypeInt,
 			TypeFloat,
 			TypeDouble,
-			TypeEmpty
+			TypeUnknown
+
 		};
 
 		ScalConverter( void );					//Canonique
@@ -43,5 +59,8 @@ class ScalConverter {
 };
 
 std::ostream &		operator<<( std::ostream & o, ScalConverter const & i );
+
+
+
 
 #endif

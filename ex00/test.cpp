@@ -40,6 +40,8 @@ int	testDigit( std::string str, int flag)
 								break;
 					case 2:		std::cout << "Type is double" << std::endl;
 								break;
+					case 3:		std::cout << "Type is double" << std::endl;
+								break;
 					case 4:		std::cout << "Type is float" << std::endl;
 								break;
 					case 5:		std::cout << "Unknown Type" << std::endl;
@@ -107,6 +109,9 @@ return;
 
 int	main( int argc, char ** argv )
 {
+	//float a = +3f; // faux !!
+	//float a = +.3f; // OK
+//	std::cout << a << std::endl;
 	(void)argv;
 	std::string str = "2i";
 	if (argc != 2 )
