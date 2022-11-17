@@ -1,6 +1,7 @@
 //main.cpp	CPP06	ex00
 
 #include <iostream>
+#include <iomanip>
 #include "ScalConverter.hpp"
 
 int	main( int argc, char ** argv )
@@ -11,7 +12,8 @@ int	main( int argc, char ** argv )
 	{
 		ScalConverter value(argv[1]);
 	value.show_cast();
-	//	std::cout << value << std::endl;
+		std::cout << std::setw(4);
+		std::cout << value << std::endl;
 	}	
 	return 0;
 }

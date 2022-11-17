@@ -87,7 +87,7 @@ int		ScalConverter::getSpecialCases( int flag) {
 		//	std::cout << "Type is char" << std::endl;
 		}
 	}
-	else if (!(_str.compare("-inff") || _str.compare("+inff") || _str.compare("nanf")))
+	else if (! _str.compare("-inff") || ! _str.compare("+inff") || ! _str.compare("nanf"))
 	{
 		flag = 5;
 		_p_val[0] = 3;
@@ -95,9 +95,9 @@ int		ScalConverter::getSpecialCases( int flag) {
 		_p_val[2] = 2;
 		_p_val[3] = 2;
 	}
-	else if (!(_str.compare("-inf") || _str.compare("+inf") || _str.compare("nan")))
+	else if (! _str.compare("-inf") || ! _str.compare("+inf") || ! _str.compare("nan"))
 	{
-		flag = 4;
+		flag = 3;
 		_p_val[0] = 3;
 		_p_val[1] = 3;
 		_p_val[2] = 2;
@@ -238,22 +238,24 @@ void	ScalConverter::show_cast( void ) {
 		display_char();
 	else if (_Type == 1)
 		display_int();
-	else if (_Type == 0)
+	else if (_Type == 2)
 		display_double();
-	else if (_Type == 0)
+	else if (_Type == 3)
 		display_float();
 	else
 		display_unknown();
 /*
 	std::cout << _Type << "_" << _charValue << "_" << _intValue << "_"
 		<< _doubleValue << "_" << _floatValue << std::endl;
-*/	return;
+*/ return;
 }
 
 void	ScalConverter::display_char( void ) {
 
 	std::cout << "char: " << _charValue << std::endl; 
 	std::cout << "int: " << _intValue << std::endl; 
+	std::cout.precision(1);
+	std::cout << std::fixed;
 	std::cout << "float: " << _floatValue << "f" << std::endl; 
 	std::cout << "double: " << _doubleValue << std::endl; 
 	
@@ -272,8 +274,11 @@ void	ScalConverter::display_int( void ) {
 	std::cout << "int: "; 
 	if (_p_val[1] == 3)
 		std::cout << "impossible" << std::endl;
+
 	else
 		std::cout << _intValue << std::endl; 
+	std::cout.precision(1);
+	std::cout << std::fixed;
 	std::cout << "float: " << _floatValue << "f" << std::endl; 
 	std::cout << "double: " << _doubleValue << std::endl; 
 	
@@ -294,8 +299,20 @@ void	ScalConverter::display_double( void ) {
 		std::cout << "impossible" << std::endl;
 	else
 		std::cout << _intValue << std::endl; 
-	std::cout << "float: " << _floatValue << "f" << std::endl; 
-	std::cout << "double: " << _doubleValue << std::endl; 
+	std::cout.precision(1);
+	std::cout << std::fixed;
+	if (_p_val[2] == 2)
+		std::cout << "float: " << _str << "f" << std::endl;
+	else if (std::isinf(_floatValue))
+		std::cout << "float: +inff" << std::endl;
+	else
+		std::cout << "float: " << _floatValue << "f" << std::endl; 
+	if (_p_val[3] == 2)
+		std::cout << "double: " << _str << std::endl;
+	else if (std::isinf(_doubleValue))
+		std::cout << "double: +inf" << std::endl;
+	else
+		std::cout << "double: " << _doubleValue << std::endl; 
 	
 	return;
 }
@@ -314,9 +331,20 @@ void	ScalConverter::display_float( void ) {
 		std::cout << "impossible" << std::endl;
 	else
 		std::cout << _intValue << std::endl; 
-	std::cout << "float: " << _floatValue << "f" << std::endl; 
-	std::cout << "double: " << _doubleValue << std::endl; 
-	
+	std::cout.precision(1);
+	std::cout << std::fixed;
+	if (_p_val[2] == 2)
+		std::cout << "float: " << _str << std::endl;
+	else if (std::isinf(_floatValue))
+		std::cout << "float: +inff" << std::endl;
+	else
+		std::cout << "float: " << _floatValue << std::endl; 
+	if (_p_val[3] == 2)
+		std::cout << "double: " << _str.substr(0, (_str.size() - 1)) << std::endl;
+	else if (std::isinf(_doubleValue))
+		std::cout << "double: +inf" << std::endl;
+	else
+		std::cout << "double: " << _doubleValue << std::endl; 
 	return;
 }	
 

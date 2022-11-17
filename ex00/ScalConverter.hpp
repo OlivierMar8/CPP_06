@@ -7,6 +7,7 @@
 #include <string>
 #include <limits>
 #include <sstream>
+#include <cmath>
 
 
 class ScalConverter {
