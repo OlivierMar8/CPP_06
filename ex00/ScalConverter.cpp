@@ -16,25 +16,25 @@ ScalConverter::ScalConverter( std::string const str ) : _str( str ) {
 		flag = testDigits( flag );
 	switch ( flag )
 	{
-		case 0:	_Type = TypeChar;
+		case 0:	_Type = 0;
 				convert_char();
 				break;
-		case 1:	_Type = TypeInt;
+		case 1:	_Type = 1;
 				convert_int();
 				break;
-		case 2:	_Type = TypeInt;
+		case 2:	_Type = 1;
 				convert_int();
 				break;
-		case 3: _Type = TypeDouble;
-				//_dbleValue = std::strtod(_str);
+		case 3: _Type = 2;
+				convert_double();
 				break;
-		case 4: _Type = TypeDouble;
-				//_dbleValue = std::strtod(_str);
+		case 4: _Type = 2;
+				convert_double();
 				break;
-		case 5: _Type = TypeFloat;
+		case 5: _Type = 3;
 				convert_float();
 				break;
-		default: _Type = TypeUnknown;
+		default: _Type = 4;
 	}
 	return;
 }
@@ -67,12 +67,12 @@ int		ScalConverter::getSpecialCases( int flag) {
 
 	if (_str.empty())
 	{
-		_Type = TypeUnknown;
+		_Type = 4;
 		_p_val[0] = 4;
 		_p_val[1] = 4;
 		_p_val[2] = 4;
 		_p_val[3] = 4;
-		flag = 9;
+		flag = 666666;
 	}
 	else if (_str.size() == 1)
 	{
@@ -109,24 +109,28 @@ int		ScalConverter::getSpecialCases( int flag) {
 int		ScalConverter::testDigits( int flag ) {
 
 	size_t	i = 0;
+	int		flag_fd = 0;
 	i = first_non_digit( i );
 	if ( i > _str.size() - 1)
 		flag = 1;
 	else
 	{
-		while (i < _str.size())
+		while (i < _str.size() && flag < 6 )
 		{
 			if ((_str[i] == '-' || _str[i] == '+') && i == 0)
-				flag += 2;
+					flag = 1;
 			else if (_str[i] == '.')
-				flag += 3;
-			else if (_str[i] == 'f' && ( i == _str.size() - 1 ))
 			{
-				if (flag >= 2)
-					flag = 5;
+				if (flag_fd == 0)
+				{
+					flag_fd = 1;
+					flag = 4;		
+				}
 				else
 					flag = 6;
 			}
+			else if (_str[i] == 'f' && ( i == _str.size() - 1 ) && flag_fd == 1 )
+				flag = 5;
 			else
 			{
 				flag = 6;
@@ -230,14 +234,20 @@ void	ScalConverter::convert_double( void ) {
 
 void	ScalConverter::show_cast( void ) {
 
-	if (_Type == TypeChar)
+	if (_Type == 0)
 		display_char();
-	else if (_Type == TypeInt)
+	else if (_Type == 1)
 		display_int();
-	else if (_Type == TypeFloat)
+	else if (_Type == 0)
+		display_double();
+	else if (_Type == 0)
 		display_float();
-
-	return;
+	else
+		display_unknown();
+/*
+	std::cout << _Type << "_" << _charValue << "_" << _intValue << "_"
+		<< _doubleValue << "_" << _floatValue << std::endl;
+*/	return;
 }
 
 void	ScalConverter::display_char( void ) {
@@ -270,6 +280,26 @@ void	ScalConverter::display_int( void ) {
 	return;
 }	
 
+void	ScalConverter::display_double( void ) {
+
+	std::cout << "char: ";
+	if ((_intValue > 0 && _intValue < 32) || _intValue == 127)
+		std::cout << "Non displayable" << std::endl;
+	else if (_intValue < 1 || _intValue > 127)
+		std::cout << "impossible" << std::endl;
+	else
+		std::cout << _charValue << std::endl; 
+	std::cout << "int: "; 
+	if (_p_val[1] == 3)
+		std::cout << "impossible" << std::endl;
+	else
+		std::cout << _intValue << std::endl; 
+	std::cout << "float: " << _floatValue << "f" << std::endl; 
+	std::cout << "double: " << _doubleValue << std::endl; 
+	
+	return;
+}
+
 void	ScalConverter::display_float( void ) {
 
 	std::cout << "char: ";
@@ -290,9 +320,20 @@ void	ScalConverter::display_float( void ) {
 	return;
 }	
 
+void	ScalConverter::display_unknown( void ) {
+
+	std::cout << "char: " << "impossible" << std::endl;
+	std::cout << "int: " << "impossible" << std::endl;
+	std::cout << "float: " << "impossible" << std::endl;
+	std::cout << "double: " << "impossible" << std::endl;
+
+	return;
+}
+
 std::ostream &	operator<<( std::ostream & o, ScalConverter const & i) {
 
 	o << "The value of _str is : " << i.getOStr();
+
 
 	return o;
 }

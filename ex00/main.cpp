@@ -10,9 +10,8 @@ int	main( int argc, char ** argv )
 	else
 	{
 		ScalConverter value(argv[1]);
-		value.show_cast();
-		std::cout << value << std::endl;
-
+	value.show_cast();
+	//	std::cout << value << std::endl;
 	}	
 	return 0;
 }

@@ -34,6 +34,7 @@ class ScalConverter {
 		void			display_int( void );
 		void			display_float( void );
 		void			display_double( void );
+		void			display_unknown( void );
 
 	private:
 
@@ -45,15 +46,13 @@ class ScalConverter {
 		double		_doubleValue;
 		float		_floatValue;
 		int			_p_val[4];
-		enum _Type_val {
+/*		enum _Type_val {
 			TypeChar,
 			TypeInt,
-			TypeFloat,
 			TypeDouble,
+			TypeFloat,
 			TypeUnknown
-
-		};
-
+*/
 		ScalConverter( void );					//Canonique
 
 };
