@@ -4,6 +4,7 @@
 # define C_HPP
 
 #include <ostream>
+#include "Base.hpp"
 
 class C : public Base {
 

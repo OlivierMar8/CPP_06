@@ -13,7 +13,7 @@ class A : public Base {
 		A( void );					//Canonique
 //		A( int const n );
 //		A( A const & src );	//Canonique	
-//		~A( void );				//Canonique	
+		~A( void );				//Canonique	
 
 //		A &	operator=( A const & rhs );//Canonique
 

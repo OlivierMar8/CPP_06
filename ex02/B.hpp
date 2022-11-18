@@ -4,6 +4,7 @@
 # define B_HPP
 
 #include <ostream>
+#include "Base.hpp"
 
 class B : public Base {
 
@@ -11,13 +12,13 @@ class B : public Base {
 
 		B( void );					//Canonique
 //		B( int const n );
-		B( B const & src );	//Canonique	
+//		B( B const & src );	//Canonique	
 		~B( void );				//Canonique	
 
-		B &	operator=( B const & rhs );//Canonique
+//		B &	operator=( B const & rhs );//Canonique
 
 };
 
-std::ostream &		operator<<( std::ostream & o, B const & i );
+//std::ostream &		operator<<( std::ostream & o, B const & i );
 
 #endif

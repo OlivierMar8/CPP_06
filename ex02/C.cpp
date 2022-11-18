@@ -1,48 +1,48 @@
-//A.cpp	CPP06	ex02
+//C.cpp	CPP06	ex02
 
 #include <iostream>
-#include "A.hpp"
+#include "C.hpp"
 
-A::A( void ) {
+C::C( void ) {
 
 	std::cout << "Default Constructor called" << std::endl;
 	return;
 }
 /*
-A::A( int const n ) : _foo( n ) {
+C::C( int const n ) : _foo( n ) {
 
 	std::cout << "Parametric Constructor called" << std::endl;
 	return;
 }
 
-A::A( A const & src ) {
+C::C( C const & src ) {
 
 	std::cout << "Copy Constructor called" << std::endl;
 	*this = src;
 	return;
 }
 */
-A::~A( void ) {
+C::~C( void ) {
 
 		std::cout << "Destructor called" << std::endl;
 		return;
 }
 /*
-int		A::getFoo( void) const {
+int		C::getFoo( void) const {
 
 		return this->_foo;
 }
 
-A &	A::operator=( A const & rhs) {
+C &	C::operator=( C const & rhs) {
 
-		std::cout << "Assignement operator called" << std::endl;
+		std::cout << "Cssignement operator called" << std::endl;
 
 		if ( this != &rhs )
 			this->_foo = rhs.getFoo();
 		return *this;
 }
 
-std::ostream &	operator<<( std::ostream & o, A const & i) {
+std::ostream &	operator<<( std::ostream & o, C const & i) {
 
 	o << "The value of _foo is : " << i.getFoo();
 

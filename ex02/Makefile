@@ -1,6 +1,6 @@
 #Makefile   CPP06   ex02
 
-SRCS		= main.cpp Base.cpp A.cpp
+SRCS		= main.cpp Base.cpp A.cpp B.cpp C.cpp
 
 OBJS		= $(SRCS:.cpp=.o)
 
