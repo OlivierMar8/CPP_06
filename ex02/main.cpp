@@ -33,23 +33,52 @@ void	identify( Base* p) {
 
 	A* ptrA = dynamic_cast<A*>(p);
 	if (ptrA != NULL)
-		std::cout << "The real type is A" << std::endl;
+		std::cout << "The real type is A*" << std::endl;
 	else
 	{
 		B* ptrB = dynamic_cast<B*>(p);
 		if (ptrB != NULL)
-			std::cout << "The real type is B" << std::endl;
+			std::cout << "The real type is B*" << std::endl;
 		else
 		{
 			C* ptrC = dynamic_cast<C*>(p);
 			if (ptrC != NULL)
-				std::cout << "The real type is C" << std::endl;
+				std::cout << "The real type is C*" << std::endl;
 			else
-				std::cout << "The real type is unknown" << std::endl;
+				std::cout << "The real type* is unknown" << std::endl;
 		}
 	}
 	return;
 }
+
+void	identify( Base& p) {
+
+(void)p;	
+	try {
+		(void) dynamic_cast<A &>(p);
+		std::cout << "The real reference type is A&" << std::endl;
+		return;
+	}
+	catch ( const std::exception &bc ) {
+	}
+	try {
+		(void) dynamic_cast<B &>(p);
+		std::cout << "The real reference type is B&" << std::endl;
+		return;
+	}
+	catch ( const std::exception &bc ) {
+	}
+	try {
+		(void) dynamic_cast<C &>(p);
+		std::cout << "The real reference type is C&" << std::endl;
+		return;
+	}
+	catch ( const std::exception &bc ) {
+		std::cout << "The real reference type& is unknown" << std::endl;
+	}
+	return;
+}
+
 
 int	main( void )
 {
@@ -59,6 +88,8 @@ int	main( void )
 	{
 		pointeur = generate();
 		identify(pointeur);
+		identify(*pointeur);
+
 		delete pointeur;
 	}
 
